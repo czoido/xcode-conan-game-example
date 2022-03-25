@@ -2,3 +2,7 @@ conan/*
 **DS_Store**
 GameExample.xcodeproj/project.xcworkspace/*
 GameExample.xcodeproj/xcuserdata/*
+conan.lock
+conanbuildinfo.txt
+conaninfo.txt
+graph_info.json

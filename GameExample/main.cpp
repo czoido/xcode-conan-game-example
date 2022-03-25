@@ -11,7 +11,7 @@ const int SCREEN_HEIGHT = 480;
 
 const int PIX2METR = 32;
 
-const b2Vec2& screen2world(const b2Vec2& screen_point) {
+const b2Vec2& screen2world(const SDL_Point& screen_point) {
   static b2Vec2 world_point;
   world_point.x = screen_point.x/(float)PIX2METR;
   world_point.y = SCREEN_HEIGHT/(float)PIX2METR - screen_point.y/(float)PIX2METR;
