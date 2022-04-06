@@ -2,7 +2,6 @@
 #include <memory>
 #include <box2d/box2d.h>
 #include "ip_connection.h"
-
 #include "bricklet_rgb_led_button.h"
 #include "Frog.hpp"
 

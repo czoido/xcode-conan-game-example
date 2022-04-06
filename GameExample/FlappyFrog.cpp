@@ -60,7 +60,6 @@ const b2Vec2& FlappyFrog::world2screen(const b2Vec2& world_point) {
 }
 
 int FlappyFrog::connect() {
-    /*
      std::cout << fmt::format("Connection {host}:{port}({uid})",
          fmt::arg("uid", connection.uid), fmt::arg("host", connection.host), fmt::arg("port", connection.port)) << std::endl;
      if (connection) {
@@ -79,10 +78,8 @@ int FlappyFrog::connect() {
          rgb_led_button_register_callback(&rlb,
                                          RGB_LED_BUTTON_CALLBACK_BUTTON_STATE_CHANGED,
                                          (void (*)(void))cb_button_state_changed,
-                                          frog_body);
+                                         (void *)frog->getBody());
      }
-
-     **/
     return 0;
 }
 
