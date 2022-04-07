@@ -24,6 +24,7 @@ public:
 private:
     const float _density{0.01f};
     const float _friction{0.01f};
+    const float _restitution{0.5};
     const b2Vec2 frog_dimensions{3, 4};
     b2Vec2 frog_dimensions_world;
     float _timeAlive {0};

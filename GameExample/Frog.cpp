@@ -24,6 +24,7 @@ Frog::Frog(const b2Vec2& position, const World& world)
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = _density;
     fixtureDef.friction = _friction;
+    fixtureDef.restitution = _restitution;
     // Using the fixture definition we can now create the fixture. This automatically updates the mass of the body.
     // You can add as many fixtures as you like to a body. Each one contributes to the total mass.
     _body->CreateFixture(&fixtureDef);
