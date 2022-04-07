@@ -39,6 +39,18 @@ void Frog::impulse() {
     _body->ApplyForce(b2Vec2(0,100.0), _body->GetPosition(), true);
 }
 
+SDL_Texture* Frog::initTexture(const std::string& name, SDL_Renderer *renderer) {
+    SDL_Surface* tmp_image;
+    tmp_image = IMG_Load(name.c_str());
+    if(!tmp_image) {
+        std::cout << "Error loading texture" << std::endl;
+        exit(1);
+    }
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tmp_image);
+    SDL_FreeSurface(tmp_image);
+    return texture;
+}
+
 void Frog::render(SDL_Renderer *renderer, float color) {
     //Render filled quad
 
@@ -51,14 +63,7 @@ void Frog::render(SDL_Renderer *renderer, float color) {
                           static_cast<int>(fabs(frog_dimensions_world.y))};
 
     if(!_texture) {
-        SDL_Surface* tmp_image;
-        tmp_image = IMG_Load("frog.png");
-        if(!tmp_image) {
-            std::cout << "Error loading texture" << std::endl;
-            exit(1);
-        }
-        _texture = SDL_CreateTextureFromSurface(renderer, tmp_image);
-        SDL_FreeSurface(tmp_image);
+        _texture = initTexture("frog.png", renderer);
     }
     else {
         SDL_RenderCopyEx(renderer, _texture, NULL, &frogRect, 0.0, NULL, SDL_FLIP_NONE);

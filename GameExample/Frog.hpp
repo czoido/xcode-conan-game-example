@@ -20,6 +20,7 @@ public:
     b2Vec2 getPosition() const {return _body->GetPosition();};
     const b2Body* getBody() {return _body;};
     void render(SDL_Renderer *renderer, float color);
+    SDL_Texture* initTexture(const std::string& name, SDL_Renderer *renderer);
 private:
     const float _density{0.01f};
     const float _friction{0.01f};
