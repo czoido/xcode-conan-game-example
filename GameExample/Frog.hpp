@@ -21,6 +21,7 @@ public:
     void render(SDL_Renderer *renderer, float color);
 private:
     const int SPEED {5};
+    const b2Vec2 frog_dimensions{1, 1};
     float _timeAlive {0};
     b2Body* _body;
 };

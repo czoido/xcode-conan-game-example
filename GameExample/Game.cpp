@@ -78,7 +78,9 @@ int Game::loop() {
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_DisplayMode DM;
     SDL_GetCurrentDisplayMode(0, &DM);
-    SDL_Window *window = SDL_CreateWindow("Basic Game Example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Window *window = SDL_CreateWindow("Basic Game Example",
+                                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                          SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
@@ -116,7 +118,6 @@ int Game::loop() {
 
         frog->render(renderer, color);
 
-        //Update screen
         SDL_RenderPresent( renderer );
         uint32_t currTime = SDL_GetTicks();
         elapsedTime = (currTime - startTime) / 1000.0; // Convert to seconds.
