@@ -4,9 +4,10 @@
 #include <memory>
 #include <stdio.h>
 #include <box2d/box2d.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
 class World;
-class SDL_Renderer;
 
 class Frog {
 
@@ -20,12 +21,13 @@ public:
     const b2Body* getBody() {return _body;};
     void render(SDL_Renderer *renderer, float color);
 private:
-    const int SPEED {5};
-    const float _density{0.1f;};
-    const float _friction{0.01f;};
-    const b2Vec2 frog_dimensions{1, 1};
+    const float _density{0.01f};
+    const float _friction{0.01f};
+    const b2Vec2 frog_dimensions{3, 4};
+    b2Vec2 frog_dimensions_world;
     float _timeAlive {0};
     b2Body* _body;
+    SDL_Texture* _texture{nullptr};
 };
 
 #endif /* Frog_hpp */

@@ -3,8 +3,7 @@
 #include "Game.hpp"
 #include <iostream>
 #include <math.h>
-#include <SDL.h>
-#include <SDL_image.h>
+
 
 
 Frog::Frog(const b2Vec2& position, const World& world)
@@ -28,6 +27,12 @@ Frog::Frog(const b2Vec2& position, const World& world)
     // Using the fixture definition we can now create the fixture. This automatically updates the mass of the body.
     // You can add as many fixtures as you like to a body. Each one contributes to the total mass.
     _body->CreateFixture(&fixtureDef);
+
+    b2Vec2 a = Game::world2screen(frog_dimensions);
+    b2Vec2 b = Game::world2screen(b2Vec2(0,0));
+    b2Vec2 dim = b - a;
+    frog_dimensions_world = b2Vec2(dim.x, dim.y);
+    
 }
 
 void Frog::impulse() {
@@ -35,20 +40,32 @@ void Frog::impulse() {
 }
 
 void Frog::render(SDL_Renderer *renderer, float color) {
-    
+    //Render filled quad
+
+
     b2Vec2 frog_world_position = getPosition();
     b2Vec2 frog_screen_position = Game::world2screen(frog_world_position);
-
-    b2Vec2 a = Game::world2screen(frog_dimensions);
-    b2Vec2 b = Game::world2screen(b2Vec2(0,0));
-    b2Vec2 dim = b - a;
-
-    //Render filled quad
-    SDL_Rect fillRect = { static_cast<int>(frog_screen_position.x),
+    SDL_Rect frogRect = { static_cast<int>(frog_screen_position.x),
                           static_cast<int>(frog_screen_position.y),
-                          static_cast<int>(fabs(dim.x)), static_cast<int>(fabs(dim.y))};
+                          static_cast<int>(fabs(frog_dimensions_world.x)),
+                          static_cast<int>(fabs(frog_dimensions_world.y))};
+
+    if(!_texture) {
+        SDL_Surface* tmp_image;
+        tmp_image = IMG_Load("frog.png");
+        if(!tmp_image) {
+            std::cout << "Error loading texture" << std::endl;
+            exit(1);
+        }
+        _texture = SDL_CreateTextureFromSurface(renderer, tmp_image);
+        SDL_FreeSurface(tmp_image);
+    }
+    else {
+        SDL_RenderCopyEx(renderer, _texture, NULL, &frogRect, 0.0, NULL, SDL_FLIP_NONE);
+    }
+    
     SDL_SetRenderDrawColor(renderer, 200, color, 0, 255);
-    SDL_RenderFillRect( renderer, &fillRect );
+    //SDL_RenderFillRect( renderer, &frogRect );
 }
 
 void Frog::update(float delta) {
