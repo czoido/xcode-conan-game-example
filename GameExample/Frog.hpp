@@ -6,6 +6,7 @@
 #include <box2d/box2d.h>
 
 class World;
+class SDL_Renderer;
 
 class Frog {
 
@@ -17,6 +18,7 @@ public:
     void impulse();
     b2Vec2 getPosition() const {return _body->GetPosition();};
     const b2Body* getBody() {return _body;};
+    void render(SDL_Renderer *renderer, float color);
 private:
     const int SPEED {5};
     float _timeAlive {0};

@@ -5,9 +5,8 @@
 #include <cmath>
 #include <memory>
 #include <string>
-
-#include "fmt/core.h"
-#include "SDL.h"
+#include <fmt/core.h>
+#include <SDL.h>
 #include <SDL_image.h>
 
 
@@ -102,32 +101,26 @@ int Game::loop() {
             }
         }
 
-        world.update(elapsedTime);
-        b2Vec2 world_position = frog->getPosition();
-        b2Vec2 screen_position = world2screen(world_position);
         //Clear screen
         SDL_SetRenderDrawColor( renderer, 0, 0, 0, 0 );
         SDL_RenderClear( renderer );
 
-        std::cout << fmt::format("Body position Y coordinate: {pos}", fmt::arg("pos", screen_position.y)) << std::endl;
-        float color = remap(screen_position.y, 400, 0, 0, 255);
+        b2Vec2 frog_screen_position = world2screen(frog->getPosition());
+        std::cout << fmt::format("Body position Y coordinate: {pos}", fmt::arg("pos", frog_screen_position.y)) << std::endl;
+        float color = remap(frog_screen_position.y, 400, 0, 0, 255);
         std::cout << fmt::format("Button color G value: {col}", fmt::arg("col", color)) << std::endl;
 
         //Set button color
         if (connection)
             rgb_led_button_set_color(&rlb, 200, color, 0);
 
-        //Render filled quad
-        SDL_Rect fillRect = { static_cast<int>(screen_position.x),
-                              static_cast<int>(screen_position.y),
-                              SCREEN_WIDTH/20, SCREEN_WIDTH/20 };
-        SDL_SetRenderDrawColor(renderer, 200, color, 0, 255);
-        SDL_RenderFillRect( renderer, &fillRect );
+        frog->render(renderer, color);
 
         //Update screen
         SDL_RenderPresent( renderer );
         uint32_t currTime = SDL_GetTicks();
         elapsedTime = (currTime - startTime) / 1000.0; // Convert to seconds.
+        world.update(elapsedTime);
     }
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
