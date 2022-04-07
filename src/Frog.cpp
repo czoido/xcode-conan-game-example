@@ -67,10 +67,9 @@ void Frog::render(SDL_Renderer *renderer, float color) {
         _texture = initTexture("frog.png", renderer);
     }
     else {
-        SDL_RenderCopyEx(renderer, _texture, NULL, &frogRect, 0.0, NULL, SDL_FLIP_NONE);
+        SDL_RenderCopyEx(renderer, _texture, NULL, &frogRect, color, NULL, SDL_FLIP_NONE);
     }
     
-    SDL_SetRenderDrawColor(renderer, 200, color, 0, 255);
     //SDL_RenderFillRect( renderer, &frogRect );
 }
 

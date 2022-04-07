@@ -126,8 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				41820B0C27F5F3590053B8C2 /* conanfile.py */,
+				41780B6E27FF4139003323BE /* assets */,
+				41780B6D27FF40EB003323BE /* include */,
+				41780B6C27FF40E0003323BE /* src */,
 				416ED61427EDA73100664526 /* conan */,
-				416ED60C27EDA62A00664526 /* GameExample */,
 				416ED60B27EDA62A00664526 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,21 +140,6 @@
 				416ED60A27EDA62A00664526 /* GameExample */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		416ED60C27EDA62A00664526 /* GameExample */ = {
-			isa = PBXGroup;
-			children = (
-				416ED60D27EDA62A00664526 /* main.cpp */,
-				41820B0D27F5F44F0053B8C2 /* Game.cpp */,
-				41820B0E27F5F44F0053B8C2 /* Game.hpp */,
-				41820B1027F607C30053B8C2 /* Frog.cpp */,
-				41820B1127F607C30053B8C2 /* Frog.hpp */,
-				41780B6427FEAA0C003323BE /* World.cpp */,
-				41780B6527FEAA0C003323BE /* World.hpp */,
-				41780B6A27FF3560003323BE /* frog.png */,
-			);
-			path = GameExample;
 			sourceTree = "<group>";
 		};
 		416ED61427EDA73100664526 /* conan */ = {
@@ -230,6 +217,35 @@
 				416ED66027EDA84000664526 /* conantoolchain.xcconfig */,
 			);
 			name = conan;
+			sourceTree = "<group>";
+		};
+		41780B6C27FF40E0003323BE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				416ED60D27EDA62A00664526 /* main.cpp */,
+				41820B0D27F5F44F0053B8C2 /* Game.cpp */,
+				41820B1027F607C30053B8C2 /* Frog.cpp */,
+				41780B6427FEAA0C003323BE /* World.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		41780B6D27FF40EB003323BE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				41820B0E27F5F44F0053B8C2 /* Game.hpp */,
+				41820B1127F607C30053B8C2 /* Frog.hpp */,
+				41780B6527FEAA0C003323BE /* World.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		41780B6E27FF4139003323BE /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				41780B6A27FF3560003323BE /* frog.png */,
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
