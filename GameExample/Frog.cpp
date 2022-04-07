@@ -23,8 +23,8 @@ Frog::Frog(const b2Vec2& position, const World& world)
     dynamicBox.SetAsBox(frog_dimensions.x,
                         frog_dimensions.y);
     fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = 0.1f;
-    fixtureDef.friction = 0.01f;
+    fixtureDef.density = _density;
+    fixtureDef.friction = _friction;
     // Using the fixture definition we can now create the fixture. This automatically updates the mass of the body.
     // You can add as many fixtures as you like to a body. Each one contributes to the total mass.
     _body->CreateFixture(&fixtureDef);
@@ -42,7 +42,6 @@ void Frog::render(SDL_Renderer *renderer, float color) {
     b2Vec2 a = Game::world2screen(frog_dimensions);
     b2Vec2 b = Game::world2screen(b2Vec2(0,0));
     b2Vec2 dim = b - a;
-    std::cout << dim.x << "," << dim.y << std::endl;
 
     //Render filled quad
     SDL_Rect fillRect = { static_cast<int>(frog_screen_position.x),
