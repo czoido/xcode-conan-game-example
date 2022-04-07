@@ -1,4 +1,4 @@
-#include "FlappyFrog.h"
+#include "Game.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -33,33 +33,31 @@ float remap(float value, float in_min, float in_max, float out_min, float out_ma
     return result;
 }
 
-FlappyFrog::FlappyFrog() {
+Game::Game() {
     // creation of a b2World object. b2World is the physics hub that manages memory, objects,
     // and simulation. You can allocate the physics world on the stack, heap, or data section.
-    b2Vec2 gravity(0.0f, -10.0f);
-    world = std::make_unique<b2World>(gravity);
-    this->frog = std::make_unique<Frog>(b2Vec2(5.0,10.0), world);
+    this->frog = std::make_unique<Frog>(b2Vec2(5.0,10.0), world.world);
 }
 
-void FlappyFrog::addConnection(Connection conn) {
+void Game::addConnection(Connection conn) {
     connection = conn;
 }
 
-const b2Vec2& FlappyFrog::screen2world(const b2Vec2& screen_point) {
+const b2Vec2& Game::screen2world(const b2Vec2& screen_point) {
   static b2Vec2 world_point;
   world_point.x = screen_point.x/(float)PIX2METR;
   world_point.y = SCREEN_HEIGHT/(float)PIX2METR - screen_point.y/(float)PIX2METR;
   return world_point;
 }
 
-const b2Vec2& FlappyFrog::world2screen(const b2Vec2& world_point) {
+const b2Vec2& Game::world2screen(const b2Vec2& world_point) {
   static b2Vec2 screen_point;
   screen_point.x = world_point.x*(float)PIX2METR;
   screen_point.y = (SCREEN_HEIGHT - world_point.y*(float)PIX2METR);
   return screen_point;
 }
 
-int FlappyFrog::connect() {
+int Game::connect() {
      std::cout << fmt::format("Connection {host}:{port}({uid})",
          fmt::arg("uid", connection.uid), fmt::arg("host", connection.host), fmt::arg("port", connection.port)) << std::endl;
      if (connection) {
@@ -83,7 +81,7 @@ int FlappyFrog::connect() {
     return 0;
 }
 
-int FlappyFrog::loop() {
+int Game::loop() {
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_DisplayMode DM;
     SDL_GetCurrentDisplayMode(0, &DM);
@@ -93,17 +91,6 @@ int FlappyFrog::loop() {
 
     SDL_Event event;
 
-    // Create the ground body
-    b2BodyDef groundBodyDef;
-    b2Vec2 world_position = screen2world(b2Vec2(0, SCREEN_HEIGHT));
-    groundBodyDef.position.Set(world_position.x, world_position.y);
-    b2Body* groundBody = world->CreateBody(&groundBodyDef);
-    b2PolygonShape groundBox;
-    groundBox.SetAsBox(50.0f, 1.0f);
-    groundBody->CreateFixture(&groundBox, 0.0f);
-
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
 
     bool quit = false;
     double elapsedTime = 1.0/60.0;
@@ -120,7 +107,8 @@ int FlappyFrog::loop() {
                 frog->impulse();
             }
         }
-        world->Step(elapsedTime, velocityIterations, positionIterations);
+
+        world.update(elapsedTime);
         b2Vec2 world_position = frog->getPosition();
         b2Vec2 screen_position = world2screen(world_position);
         //Clear screen
@@ -154,7 +142,7 @@ int FlappyFrog::loop() {
 }
 
 
-FlappyFrog::~FlappyFrog() {
+Game::~Game() {
     if (connection) {
         rgb_led_button_destroy(&rlb);
         ipcon_destroy(&ipcon);

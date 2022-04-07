@@ -1,4 +1,4 @@
-#include "FlappyFrog.h"
+#include "Game.hpp"
 
 #include <CLI/CLI.hpp>
 #include "fmt/core.h"
@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
     CLI11_PARSE(app, argc, argv);
 
-    FlappyFrog game;
+    Game game;
     if (!uid.empty()) {
         std::cout << fmt::format("Connecting to device '{uid}' at {host}:{port}",
                                  fmt::arg("uid", uid), fmt::arg("host", host), fmt::arg("port", port))

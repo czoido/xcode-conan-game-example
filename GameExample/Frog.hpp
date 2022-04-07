@@ -11,15 +11,14 @@ public:
     Frog(const b2Vec2& position, const std::unique_ptr<b2World>& world);
     Frog(const Frog&);
     Frog& operator=(const Frog&);
-    void update(float delta, const b2Body* body);
-    b2Vec2 getPosition();
+    void update(float delta);
     void impulse();
-    const b2Body* getBody() {return body;};
+    b2Vec2 getPosition() const {return _body->GetPosition();};
+    const b2Body* getBody() {return _body;};
 private:
-    const int SPEED = 5;
-    b2Vec2 position;
-    float timeAlive;
-    b2Body* body;
+    const int SPEED {5};
+    float _timeAlive {0};
+    b2Body* _body;
 };
 
 #endif /* Frog_hpp */

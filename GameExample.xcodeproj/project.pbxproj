@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		416ED60E27EDA62A00664526 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 416ED60D27EDA62A00664526 /* main.cpp */; };
-		41820B0F27F5F44F0053B8C2 /* FlappyFrog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41820B0D27F5F44F0053B8C2 /* FlappyFrog.cpp */; };
+		41780B6627FEAA0C003323BE /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41780B6427FEAA0C003323BE /* World.cpp */; };
+		41820B0F27F5F44F0053B8C2 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41820B0D27F5F44F0053B8C2 /* Game.cpp */; };
 		41820B1227F607C30053B8C2 /* Frog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41820B1027F607C30053B8C2 /* Frog.cpp */; };
 /* End PBXBuildFile section */
 
@@ -97,9 +98,11 @@
 		416ED66227EDA84000664526 /* conan_libpng.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = conan_libpng.xcconfig; path = conan/conan_libpng.xcconfig; sourceTree = "<group>"; };
 		416ED66327EDA84000664526 /* conan_libtiff_vars_debug_x86_64.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = conan_libtiff_vars_debug_x86_64.xcconfig; path = conan/conan_libtiff_vars_debug_x86_64.xcconfig; sourceTree = "<group>"; };
 		416ED66427EDA84000664526 /* conan_xz_utils_vars_release_x86_64.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = conan_xz_utils_vars_release_x86_64.xcconfig; path = conan/conan_xz_utils_vars_release_x86_64.xcconfig; sourceTree = "<group>"; };
+		41780B6427FEAA0C003323BE /* World.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		41780B6527FEAA0C003323BE /* World.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = World.hpp; sourceTree = "<group>"; };
 		41820B0C27F5F3590053B8C2 /* conanfile.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = conanfile.py; sourceTree = "<group>"; };
-		41820B0D27F5F44F0053B8C2 /* FlappyFrog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FlappyFrog.cpp; sourceTree = "<group>"; };
-		41820B0E27F5F44F0053B8C2 /* FlappyFrog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlappyFrog.h; sourceTree = "<group>"; };
+		41820B0D27F5F44F0053B8C2 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		41820B0E27F5F44F0053B8C2 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		41820B1027F607C30053B8C2 /* Frog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Frog.cpp; sourceTree = "<group>"; };
 		41820B1127F607C30053B8C2 /* Frog.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Frog.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,10 +140,12 @@
 			isa = PBXGroup;
 			children = (
 				416ED60D27EDA62A00664526 /* main.cpp */,
-				41820B0D27F5F44F0053B8C2 /* FlappyFrog.cpp */,
-				41820B0E27F5F44F0053B8C2 /* FlappyFrog.h */,
+				41820B0D27F5F44F0053B8C2 /* Game.cpp */,
+				41820B0E27F5F44F0053B8C2 /* Game.hpp */,
 				41820B1027F607C30053B8C2 /* Frog.cpp */,
 				41820B1127F607C30053B8C2 /* Frog.hpp */,
+				41780B6427FEAA0C003323BE /* World.cpp */,
+				41780B6527FEAA0C003323BE /* World.hpp */,
 			);
 			path = GameExample;
 			sourceTree = "<group>";
@@ -281,7 +286,8 @@
 			files = (
 				41820B1227F607C30053B8C2 /* Frog.cpp in Sources */,
 				416ED60E27EDA62A00664526 /* main.cpp in Sources */,
-				41820B0F27F5F44F0053B8C2 /* FlappyFrog.cpp in Sources */,
+				41780B6627FEAA0C003323BE /* World.cpp in Sources */,
+				41820B0F27F5F44F0053B8C2 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
