@@ -33,12 +33,6 @@ float remap(float value, float in_min, float in_max, float out_min, float out_ma
     return result;
 }
 
-Game::Game() {
-    // creation of a b2World object. b2World is the physics hub that manages memory, objects,
-    // and simulation. You can allocate the physics world on the stack, heap, or data section.
-    this->frog = std::make_unique<Frog>(b2Vec2(5.0,10.0), world.world);
-}
-
 void Game::addConnection(Connection conn) {
     connection = conn;
 }

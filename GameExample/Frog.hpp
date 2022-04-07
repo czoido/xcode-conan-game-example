@@ -5,10 +5,12 @@
 #include <stdio.h>
 #include <box2d/box2d.h>
 
+class World;
+
 class Frog {
 
 public:
-    Frog(const b2Vec2& position, const std::unique_ptr<b2World>& world);
+    Frog(const b2Vec2& position, const World& world);
     Frog(const Frog&);
     Frog& operator=(const Frog&);
     void update(float delta);

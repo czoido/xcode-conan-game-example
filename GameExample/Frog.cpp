@@ -1,12 +1,13 @@
 #include "Frog.hpp"
+#include "World.hpp"
 
-Frog::Frog(const b2Vec2& position, const std::unique_ptr<b2World>& world)
+Frog::Frog(const b2Vec2& position, const World& world)
 {
     // Create a dynamic body
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position.x, position.y);
-    _body = world->CreateBody(&bodyDef);
+    _body = world.getWorld()->CreateBody(&bodyDef);
 
     // Next we create a fixture definition using the box. Notice that we set density to 1.
     // The default density is zero. Also, the friction on the shape is set to 0.3.

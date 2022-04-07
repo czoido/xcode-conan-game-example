@@ -28,7 +28,7 @@ class Game {
 
 public:
 
-    Game();
+    Game() = default;
     ~Game();
 
     void addConnection(const Connection);
@@ -40,14 +40,13 @@ public:
     static const int PIX2METR{32};
     static const b2Vec2& screen2world(const b2Vec2&);
     static const b2Vec2& world2screen(const b2Vec2&);
-
+    const b2Vec2 frogPos{5.0,10.0};
+    
 private:
-    World world;
+    World world{};
+    std::unique_ptr<Frog> frog{std::make_unique<Frog>(frogPos, world)};
+
     Connection connection;
-
-
-    std::unique_ptr<Frog> frog;
-
     IPConnection ipcon;
     RGBLEDButton rlb;
 
